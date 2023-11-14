@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "03fad9f4-5c47-43a0-a99e-d43f815ac63e",
+		"name": "AWS IAM",
+		"description": "# About this collection\n\nThis template helps you automate the process of creating users in AWS and assigning permissions.\n\n## Using the collection\n\n1\\. Each request contains some sample data in the request body that you can update with the required details.\n\n2\\. Send the request to complete the intended action.\n\nIf you’re creating a new user, send the requests in the given order to create a user, and then assign a group and policy to them.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create IAM User",
+			"id": "7446c839-2732-4e5d-a43e-0bf50bf53c92",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1"
+					},
+					{
+						"key": "X-Amz-Target",
+						"value": "iam:CreateUser"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"UserName\": \"myuser\"\n}"
+				},
+				"url": {
+					"raw": "https://iam.amazonaws.com/?Version=2010-05-08",
+					"protocol": "https",
+					"host": [
+						"iam",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2010-05-08"
+						}
+					]
+				},
+				"description": "This request lets you create an IAM user."
+			},
+			"response": []
+		},
+		{
+			"name": "Add User to Group",
+			"id": "982c4131-6670-4a70-9ace-f99cde680d4e",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1"
+					},
+					{
+						"key": "X-Amz-Target",
+						"value": "iam:AddUserToGroup"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"GroupName\": \"mygroup\",\n    \"UserName\": \"myuser\"\n}"
+				},
+				"url": {
+					"raw": "https://iam.amazonaws.com/?Version=2010-05-08",
+					"protocol": "https",
+					"host": [
+						"iam",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2010-05-08"
+						}
+					]
+				},
+				"description": "This request lets you add a user to an IAM user group."
+			},
+			"response": []
+		},
+		{
+			"name": "Attach User Policy",
+			"id": "640de7d5-aba9-4e6c-b494-ca0db96565ba",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1"
+					},
+					{
+						"key": "X-Amz-Target",
+						"value": "iam:AttachUserPolicy"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PolicyArn\": \"arn:aws:iam::aws:policy/AdministratorAccess\",\n    \"UserName\": \"myuser\"\n}"
+				},
+				"url": {
+					"raw": "https://iam.amazonaws.com/?Version=2010-05-08",
+					"protocol": "https",
+					"host": [
+						"iam",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2010-05-08"
+						}
+					]
+				},
+				"description": "This request lets you assign a policy to an IAM user."
+			},
+			"response": []
+		}
+	]
+}
